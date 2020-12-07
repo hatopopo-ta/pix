@@ -57,3 +57,8 @@ gem 'carrierwave'
 
 # 画像のリサイズ
 gem 'mini_magick'
+
+# heroku用
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
