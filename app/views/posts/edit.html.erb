@@ -1,2 +1,29 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <%= f.label :content, 'メッセージ' %>
+  <%= f.text_field :content %>
+  
+  <!-- 追加個所 -->
+  <div class="field">
+    <% if @post.image? %>
+      <div class="thumbnail">
+      <%= image_tag @post.image.url %>
+    </div>
+  <% end %><br>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="field">
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <% if @post.persisted? && @post.image? %>
+      <label>
+      <%= f.check_box :remove_image %>
+      画像を削除
+    </label>
+  <% end %>
+  </div>
+  <!-- 追加個所終了 -->
+
+  <%= f.submit '投稿' %>
+<% end %>

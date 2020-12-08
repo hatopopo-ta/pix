@@ -27,16 +27,27 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:success] = 'Post は正常に更新されました'
+      redirect_to root_url
+    else
+      flash.now[:danger] = 'Post は更新されませんでした'
+      render :edit
+    end
   end
   
   
   private
 
   def post_params
-    params.require(:post).permit(:content, :image)
+    # params.require(:post).permit(:content, :image)
+    params.require(:post).permit(:content, :image, :image_cache, :remove_image)
   end
   
   def correct_user
