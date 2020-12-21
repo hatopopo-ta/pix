@@ -9,9 +9,10 @@
   <!-- 自作CSS読み込み -->
   <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
   <!-- fontawesomeのCSS読み込み -->
-  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
+
   
   <div class="row p-2 pb-5">
     <div class="col-sm-8 card p-2">
@@ -47,9 +48,9 @@
                 <div class="jumbotron bg-light mx-auto">
                   <%= form_with(model:[@post, @comment], local: true) do |f| %>
                   <div class="form-group">
-                    <%= f.label :comment_content, "コメント"  %>
+                    <%= f.label :content, "コメント"  %>
                     <% f.hidden_field :post_id, value: @post.id %>
-                    <%= f.text_area :comment_content, class: "form-control" %>
+                    <%= f.text_area :content, class: "form-control" %>
                   </div>
                   <%= f.submit '送信', class: "btn btn-info btn-block" %>
                   <% end %>
@@ -63,7 +64,7 @@
                   <% @comments.each do |comment| %>
                 <div class="py-3">
                   <p><%= image_tag comment.user.image.url, :size => '50x50' %><%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">commented at <%= comment.created_at %></p>
-                  <p><%= comment.comment_content %></p>
+                  <p><%= comment.content %></p>
                   <% if current_user == comment.user %>
                   <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: 'btn btn-danger btn-sm' %>
                   <% end %>
