@@ -1,18 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+  <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+</head>
+<body>
+
+
+
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-sm-4">
-      <%= form_with(model: @post, local: true) do |f| %>
-        <div class="form-group field">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-          <%= f.file_field :image %>
-        </div>
-        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-      <% end %>
-    </aside>
-    <div class="col-sm-8">
-      <%= render 'posts/posts', posts: @posts %>
+  <div class="row p-2 pb-5">
+    <div class="col-sm-8 card p-3">
+      <%= render 'layouts/smartphone_menu' %>
+      <div class="box">
+        <%= render 'posts/posts', posts: @posts %>
+        
+      </div>
     </div>
+    
+    <aside class="col-sm-3 hide-sidemenu">
+      <div class="btn-group-vertical btn-block fix">
+        <%= render "layouts/sidemenu" %>
+      </div>
+    </aside>
+    
   </div>
+  
+  
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
@@ -21,3 +41,15 @@
     </div>
   </div>
 <% end %>
+
+
+<div class="push"></div>
+
+<div>
+  <%= render "layouts/footer" %>
+</div>
+
+
+
+</body>
+</html>

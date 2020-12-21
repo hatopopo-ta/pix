@@ -1,15 +1,97 @@
+body {
+  background-color: #ecf0f1;
+  margin: 0;
+  padding: 0;
+  width: 100%; 
+  height: 100%; 
+}
+
+.main {
+}
+
+/* img-responsiveを維持しつつ小さい画面で親要素からはみ出すのを防ぐ */
+img {
+ max-width: 100%;
+}
+
+/* ボタン色付け */
+.fa-heart {
+  color: #f19ca7;
+}
+
+.fa-comment-dots {
+  color: gray;
+}
+
+.fa-pen-fancy {
+  color: #ffffff;
+}
+
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.space{
+    margin-left:10px;
+    margin-right:10px;
+ 
+    > div{
+        padding-right:-10px;
+        padding-left:-10px;
+    }
+}
+*/
+
+.fix {
+  position: fixed;
+  width: 20%;
+}
+
+@media (min-width: 576px) {
+  /* ウインドウ幅500px以上の時に適用されるスタイル */
+  .hide-smartphone {
+    display: none;
+  }
+}
+
+
+@media (max-width: 576px) {
+  /* ウインドウ幅500px以上の時に適用されるスタイル */
+  .hide-sidemenu {
+    display: none;
+  }
+}
+
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #58656e;
+  color: #fff;
+  width: 100%;
+  height: 45px;
+  position: absolute;/*②絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+.push {
+  height: 45px;/*フッターと同じ高さに指定*/
+}
+
+footer a:link { color: #ffffff; }
+
+footer a:visited { color: #ffffff; }
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  /* border-radius: 15px;     角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  /* border-radius: 15px;     角を丸くする*/
+}

@@ -1,29 +1,80 @@
-
-<%= form_with(model: @post, local: true) do |f| %>
-  <%= f.label :content, 'メッセージ' %>
-  <%= f.text_field :content %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
   
-  <!-- 追加個所 -->
-  <div class="field">
-    <% if @post.image? %>
-      <div class="thumbnail">
-      <%= image_tag @post.image.url %>
+    <div class="row p-2 pb-5">
+    <div class="col-sm-8 card p-2">
+      <%= render 'layouts/smartphone_menu' %>
+      <div class="card-header">
+        <h2 class="card-title">投稿内容の編集</h3>
+      </div>
+      <div class="box mt-1">
+        <div class="form-group field">
+          <%= form_with(model: @post, local: true) do |f| %>
+          
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+            
+            
+            <hr width="80%" align="center", class: 'mt-3' >
+            
+            
+            <!-- 追加個所 -->
+            <div class="field text-center mt-3 p-3 card">
+              <% if @post.image? %>
+                <div class="thumbnail">
+                <%= image_tag @post.image.url %>
+              </div>
+            <% end %>
+            
+              <%= f.file_field :image, class: 'mt-2' %>
+              <%= f.hidden_field :image_cache %>
+            
+            
+            <div class="field text-right">
+              <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+              <% if @post.persisted? && @post.image? %>
+                <label>
+                <%= f.check_box :remove_image %>
+                画像を削除
+              </label>
+            <% end %>
+            </div>
+            <!-- 追加個所終了 -->
+            </div>
+            <div class="text-center">
+            <%= f.submit '変更', class: 'btn btn-info btn-sm mt-4 btn-block' %>
+            
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %><br>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
-  </div>
-  <div class="field">
-    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
-    <% if @post.persisted? && @post.image? %>
-      <label>
-      <%= f.check_box :remove_image %>
-      画像を削除
-    </label>
-  <% end %>
-  </div>
-  <!-- 追加個所終了 -->
 
-  <%= f.submit '投稿' %>
-<% end %>
+
+
+    <aside class="col-sm-3 hide-sidemenu">
+      <div class="btn-group-vertical btn-block fix">
+        <%= render "layouts/sidemenu" %>
+        <%= link_to '一覧に戻る', root_path, class: 'btn btn-light btn-block' %>
+      </div>
+    </aside>
+    
+  </div>
+  
+  
+  <div class="push"></div>
+  <div>
+    <%= render "layouts/footer" %>
+  </div>
+
+</body>
+</html>

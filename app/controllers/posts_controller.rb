@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :destroy, :edit, :update]
   before_action :correct_user, only: [:edit, :update, :destroy]
   
+  
   def new
   end
   
@@ -18,6 +19,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @comment = @post.comments.new
+    #@comments = @post.comments
+    @comments = @post.comments.includes(:user).all
   end
 
   def destroy

@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
   
+  
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  
+  post "posts/new" => "posts#new"
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :new, :create, :edit, :update]do
+  
+  
+  resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]do
     member do
       get :followings
       get :followers
@@ -14,8 +17,11 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :posts, only: [:create, :show, :edit, :update, :destroy]
+  resources :posts, only: [:new, :create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  
 end
 

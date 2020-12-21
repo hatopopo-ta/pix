@@ -1,18 +1,88 @@
-<%= form_with(model: @user, local: true) do |f| %>
-  <div>
-    <%= f.label :name, 'ユーザー名' %>
-    <%= f.text_field :name %>
-  </div>
-  
-  <div>
-    <%= f.label :prof, 'プロフィール' %>
-    <%= f.text_area :prof %>
-  </div>
-  
-  <div class="field">
-    <%= f.file_field :image %>
-  </div>
- 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
 
-  <%= f.submit '変更' %>
-<% end %>
+
+  <div class="row p-2 pb-5">
+    <div class="col-sm-8 card p-2">
+      <%= render 'layouts/smartphone_menu' %>
+      <div class="card-header">
+        <h2 class="card-title">プロフィールの編集</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group field">
+          <%= form_with(model: @user, local: true) do |f| %>
+            
+              <%= f.label :name, 'ユーザー名：' %>
+              <%= f.text_field :name, class: 'form-control' %>
+            
+            
+            <div>
+              <%= f.label :prof, 'プロフィール：', class: 'mt-3' %>
+              <%= f.text_area :prof, class: 'form-control' %>
+            </div>
+            
+           <!-- 追加個所 -->
+            <div class="field mt-3 p-3 card">
+              <%= f.label :icon, 'アイコンを変更する：' %>
+  
+              <% if @user.image? %>
+                <div class="thumbnail">
+                <%= image_tag @user.image.url, class: 'd-block mx-auto' %>
+              </div>
+            <% end %>
+            
+            <div class="text-center">
+              <%= f.file_field :image, class: 'mt-3' %>
+              <%= f.hidden_field :image_cache %>
+            </div>
+            
+            <div class="field text-right">
+              <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+              <% if @user.persisted? && @user.image? %>
+                <label>
+                <%= f.check_box :remove_image %>
+                アイコンを削除
+              </label>
+            <% end %>
+            </div>
+            
+            </div>
+            <!-- 追加個所終了 -->
+            <div class="text-center">
+            <%= f.submit '変更', class: 'btn btn-info btn-sm mt-4 btn-block' %>
+            </div>
+          <% end %>
+        </div>
+</div></div>
+
+
+    <aside class="col-sm-3 hide-sidemenu">
+        <div class="btn-group-vertical btn-block fix">
+          <%= render "layouts/sidemenu" %>
+          <%= link_to '一覧に戻る', root_path, class: 'btn btn-light btn-block' %>
+          <% if current_user == @user %>
+          <%= link_to 'Pixを退会する',user_path(current_user.id), method: :delete, data: { confirm: "退会しますか？" }, class: 'btn btn-dark btn-block mt-10' %>
+          <% end %>
+        </div>
+    </aside>
+    
+  </div>
+
+<div class="push"></div>
+<div>
+  <%= render "layouts/footer" %>
+</div>
+
+
+</body>
+</html>

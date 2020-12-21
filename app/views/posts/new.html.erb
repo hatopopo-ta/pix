@@ -15,10 +15,16 @@
     <div class="col-sm-8 card p-2">
       <%= render 'layouts/smartphone_menu' %>
       <div class="card-header">
-        <h2>お気に入り</h2>
+        <h2>新規投稿</h2>
       </div>
-      <div class="pt-2">
-      <%= render 'posts/posts', posts: @posts %>
+      <div class="box mt-1">
+        <%= form_for(Post.new) do |f| %>
+          <div class="form-group field">
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+            <%= f.file_field :image, class: 'mt-2' %>
+          </div>
+          <%= f.submit '投稿', class: 'btn btn-info btn-block' %>
+        <% end %>
       </div>
     </div>
     
@@ -32,12 +38,11 @@
     
   </div>
 
-
   <div class="push"></div>
   <div>
     <%= render "layouts/footer" %>
   </div>
-
-
+  
+  
 </body>
 </html>

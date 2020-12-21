@@ -1,8 +1,27 @@
-<div class="text-center">
-  <h1>Sign up</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+  <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="sticky-footer.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="card p-4">
+
+
+<div class="text-center pb-4">
+  <h1>Sign up.</h1>
 </div>
 
-<div class="row">
+<div class="row pb-5">
   <div class="col-sm-6 offset-sm-3">
 
     <%= form_with(model: @user, local: true) do |f| %>
@@ -28,7 +47,20 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
-      <%= f.submit '登録する', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block mt-5' %>
     <% end %>
   </div>
 </div>
+
+
+</div>
+
+
+<div class="push"></div>
+
+<div>
+  <%= render "layouts/footer" %>
+</div>
+
+</body>
+</html>
