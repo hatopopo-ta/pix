@@ -8,10 +8,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     @posts = @user.posts.order(id: :desc).page(params[:page])
     counts(@user)
   end
+
 
   def new
     @user = User.new
