@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="ja">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +15,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+    
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+    <!-- fontawesomeのCSS読み込み -->
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
   </head>
 
   <body>
@@ -22,8 +29,8 @@
 
     <div class="container">
       <%= render 'layouts/flash_messages' %>
-
       <%= yield %>
     </div>
+    
   </body>
 </html>
