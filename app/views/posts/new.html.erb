@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
-  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+      
+
+
   
   <div class="row p-2 pb-5">
     <div class="col-sm-8 card p-2">
       <%= render 'layouts/smartphone_menu' %>
       <div class="card-header">
-        <h2>新規投稿</h2>
+        <h2>新規投稿?</h2>
       </div>
       <div class="box mt-1">
         <%= form_with(model: @post, local: true) do |f| %>
@@ -47,5 +51,5 @@
   </div>
   
   
-</body>
+  </body>
 </html>

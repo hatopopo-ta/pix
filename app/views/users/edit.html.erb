@@ -21,7 +21,7 @@
       <div class="card-body">
         <div class="form-group field">
           <%= form_with(model: @user, local: true) do |f| %>
-            
+            <%= render 'layouts/error_messages', model: f.object %>
               <%= f.label :name, 'ユーザー名：' %>
               <%= f.text_field :name, class: 'form-control' %>
             

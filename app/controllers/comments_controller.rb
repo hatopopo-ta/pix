@@ -1,17 +1,18 @@
 class CommentsController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, only: [:create, :destroy]
   before_action :correct_user, only: [:destroy]
   
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new (comment_params)
     @comment.user_id = current_user.id
+    @comments = @post.comments.includes(:user).all
     if @comment.save
       flash[:success] = "コメントしました"
       redirect_back(fallback_location: root_path)
     else
       flash[:success] = "コメントできませんでした"
-      render post_path(@post)
+      render template: "posts/show"
     end
   end
   

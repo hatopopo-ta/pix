@@ -95,3 +95,7 @@ footer a:visited { color: #ffffff; }
 .pagination>li>a:hover {        
   /* border-radius: 15px;     角を丸くする*/
 }
+
+.comment-width{
+  width: 80%;
+}

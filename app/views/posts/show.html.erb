@@ -48,6 +48,7 @@
                 <div class="jumbotron bg-light mx-auto">
                   <%= form_with(model:[@post, @comment], local: true) do |f| %>
                   <div class="form-group">
+                    <%= render 'layouts/error_messages', model: f.object %>
                     <%= f.label :content, "コメント"  %>
                     <% f.hidden_field :post_id, value: @post.id %>
                     <%= f.text_area :content, class: "form-control" %>
@@ -60,9 +61,9 @@
                 
                 
                 <div class="text-center"><strong>コメント一覧</strong></div>
-                <% if @comments.any? %>
+                
                   <% @comments.each do |comment| %>
-                <div class="py-3">
+                <div class="py-3 comment-width">
                   <p><%= image_tag comment.user.image.url, :size => '50x50' %><%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">commented at <%= comment.created_at %></p>
                   <p><%= comment.content %></p>
                   <% if current_user == comment.user %>
@@ -71,7 +72,7 @@
                   <hr width="80%" align="center">
                 </div>
                   <% end %>
-                <% end %>
+                
                 
                   
         </div>
