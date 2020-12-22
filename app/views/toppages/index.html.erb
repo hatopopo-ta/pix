@@ -1,56 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- CSS読み込み -->
-  <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
-  <!-- fontawesomeのCSS読み込み -->
-  <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" type="text/css" href="./../stylesheets/application.css">
+    <!-- fontawesomeのCSS読み込み -->
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+  </head>
+  
+  
+  <body>
 
-
-
-<% if logged_in? %>
-  <div class="row p-2 pb-5">
-    <div class="col-sm-8 card p-3">
-      <%= render 'layouts/smartphone_menu' %>
-      <div class="box">
-        <%= render 'posts/posts', posts: @posts %>
+    <% if logged_in? %>
+      <div class="row p-2 pb-5">
+        <div class="col-sm-8 card p-3">
+          <%= render 'layouts/smartphone_menu' %>
+          <div class="box">
+            <%= render 'posts/posts', posts: @posts %>
+          </div>
+        </div>
         
+        <aside class="col-sm-3 hide-sidemenu">
+          <div class="btn-group-vertical btn-block fix">
+            <%= render "layouts/sidemenu" %>
+          </div>
+        </aside>
       </div>
-    </div>
-    
-    <aside class="col-sm-3 hide-sidemenu">
-      <div class="btn-group-vertical btn-block fix">
-        <%= render "layouts/sidemenu" %>
+      
+    <% else %>
+      <div class="center jumbotron">
+        <div class="text-center">
+          <h1>Pix.</h1>
+          <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+        </div>
       </div>
-    </aside>
+    <% end %>
     
-  </div>
-  
-  
-<% else %>
-  <div class="center jumbotron">
-    <div class="text-center">
-      <h1>Pix.</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    <div class="push"></div>
+    <div>
+      <%= render "layouts/footer" %>
     </div>
-  </div>
-<% end %>
 
-
-<div class="push"></div>
-
-<div>
-  <%= render "layouts/footer" %>
-</div>
-
-
-
-</body>
+  </body>
+  
 </html>
