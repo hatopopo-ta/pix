@@ -24,29 +24,27 @@
       <ul class="list-unstyled">
   
         <li class="media mb-3 pt-2">
-           <%= image_tag @post.user.image.url, :size => '50x50' %>
+          <%= image_tag @post.user.image.url, :size => '50x50' %>
       
-            <div class="media-body">
-                <div>
-                  <%= link_to @post.user.name, user_path(@post.user) %> <span class="text-muted">posted at <%= @post.created_at %></span>
-                </div>
-                <div>
-                  <div class="text-right"><%= render "favorites/favorites_button", post: @post %></div>
-                    <p><%= @post.content %></p>
-                    <%= image_tag(@post.image_url, class: "img-responsive") if @post.image.present? %>
-                </div>
+          <div class="media-body">
+            <div>
+              <%= link_to @post.user.name, user_path(@post.user) %> <span class="text-muted">posted at <%= @post.created_at %></span>
+            </div>
+            <div>
+              <div class="text-right"><%= render "favorites/favorites_button", post: @post %></div>
+                <p><%= @post.content %></p>
+                <%= image_tag(@post.image_url, class: "img-responsive") if @post.image.present? %>
+              </div>
                 
-                <div class="text-right">
-                  <% if current_user == @post.user %>
-                    <%= link_to '編集', edit_post_path(@post), class: 'btn btn-light btn-sm' %>
-                    <%= link_to "削除", @post, method: :delete, data: { confirm: "投稿を削除しますか？" }, class: 'btn btn-info btn-sm' %>
-                  <% end %>
-                  
-                </div>
-            
-        
-                <div class="jumbotron bg-light mx-auto">
-                  <%= form_with(model:[@post, @comment], local: true) do |f| %>
+              <div class="text-right">
+                <% if current_user == @post.user %>
+                  <%= link_to '編集', edit_post_path(@post), class: 'btn btn-light btn-sm' %>
+                  <%= link_to "削除", @post, method: :delete, data: { confirm: "投稿を削除しますか？" }, class: 'btn btn-info btn-sm' %>
+                <% end %>
+              </div>
+              
+              <div class="jumbotron bg-light mx-auto comment-width">
+                <%= form_with(model:[@post, @comment], local: true) do |f| %>
                   <div class="form-group">
                     <%= render 'layouts/error_messages', model: f.object %>
                     <%= f.label :content, "コメント"  %>
@@ -54,33 +52,35 @@
                     <%= f.text_area :content, class: "form-control" %>
                   </div>
                   <%= f.submit '送信', class: "btn btn-info btn-block" %>
-                  <% end %>
-                </div>
-                
-                <hr width="80%" align="center">
-                
-                
-                <div class="text-center"><strong>コメント一覧</strong></div>
-                
-                  <% @comments.each do |comment| %>
-                <div class="py-3 comment-width">
-                  <p><%= image_tag comment.user.image.url, :size => '50x50' %><%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">commented at <%= comment.created_at %></p>
-                  <p><%= comment.content %></p>
-                  <% if current_user == comment.user %>
-                  <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: 'btn btn-danger btn-sm' %>
-                  <% end %>
-                  <hr width="80%" align="center">
-                </div>
-                  <% end %>
-                
-                
-                  
-        </div>
-      </li>
-    </ul>
+                <% end %>
+              </div>
+              
+              <hr width="80%" align="center">
+              
+              <div class="text-center"><strong>コメント一覧</strong></div>
+              
+              <div class="comment">
+                <% @comments.each do |comment| %>
+                  <div class="py-3">
+                    <p><%= image_tag comment.user.image.url, :size => '50x50' %><%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">commented at <%= comment.created_at %></p>
+                    <p style="word-break: break-all;"><%= comment.content %></p>
+                    
+                    <% if current_user == comment.user %>
+                    <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+                    <% end %>
+                    <hr width="80%" align="center">
+                  </div>
+                <% end %>
+              </div>
+              
+              
+              
+          </div>
+        </li>
+      </ul>
    
 
-   </div>
+    </div>
 
 
     <aside class="col-sm-3 hide-sidemenu">

@@ -7,11 +7,20 @@ body {
 }
 
 .main {
+  width: 100%;
 }
 
-/* img-responsiveを維持しつつ小さい画面で親要素からはみ出すのを防ぐ */
-img {
- max-width: 100%;
+.comment {
+  box-sizing:border-box;
+  width: 100%;
+}
+
+.comment p{
+  max-width: 100%;
+}
+
+p.break {
+  word-wrap: break-word; /* 単語の途中でも改行 */
 }
 
 /* ボタン色付け */
@@ -26,18 +35,6 @@ img {
 .fa-pen-fancy {
   color: #ffffff;
 }
-
-/*
-.space{
-    margin-left:10px;
-    margin-right:10px;
- 
-    > div{
-        padding-right:-10px;
-        padding-left:-10px;
-    }
-}
-*/
 
 .fix {
   position: fixed;
@@ -58,7 +55,6 @@ img {
     display: none;
   }
 }
-
 
 footer {
   text-align: center;
@@ -96,6 +92,7 @@ footer a:visited { color: #ffffff; }
   /* border-radius: 15px;     角を丸くする*/
 }
 
-.comment-width{
-  width: 60%;
+/* img-responsiveを維持しつつ小さい画面で親要素からはみ出すのを防ぐ */
+img {
+ max-width: 100%;
 }
