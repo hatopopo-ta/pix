@@ -2,7 +2,7 @@
   <ul class="list-unstyled">
     <% users.each do |user| %>
       <li class="media">
-        <%= image_tag user.image.url, :size => '50x50' %>
+        <%= image_tag user.image.url, :size => '50x50' , alt: "User Icon." %>
         <div class="media-body">
           <div class="ml-2">
             <%= user.name %>
