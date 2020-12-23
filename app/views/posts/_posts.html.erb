@@ -7,7 +7,9 @@
           <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
         </div>
         <div>
+          <% if logged_in? %>
           <div class="text-right"><%= render "favorites/favorites_button", post: post %></div>
+          <% end %>
           <p><%= post.content %></p>
           <%= image_tag(post.image_url, class: "img-responsive") if post.image.present? %>
         </div>
