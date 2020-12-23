@@ -19,7 +19,7 @@
               <% if logged_in? %>
                 <div class="text-right"><%= render "favorites/favorites_button", post: @post %></div>
               <% end %>
-                <p><%= @post.content %></p>
+                <p style="word-break: break-all;"><%= @post.content %></p>
                 <%= image_tag(@post.image_url, alt: "User Icon.", class: "img-responsive") if @post.image.present? %>
               </div>
                 
