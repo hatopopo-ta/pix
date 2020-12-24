@@ -1,24 +1,39 @@
 <ul class="list-unstyled">
   <% @posts.each do |post| %>
     <li class="media mb-3">
-      <%= image_tag post.user.image.url, :size => '50x50' , alt: "User Icon." %>
-      <div class="media-body card ml-2 p-2">
+      <%= image_tag post.user.image.url, :size => '50x50', alt: "User Icon.", class: "rounded-circle" %>
+      <div class="media-body card ml-2 pt-2 px-2">
         <div>
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+          <b><%= link_to post.user.name, user_path(post.user) %></b> <span class="text-muted">posted at <%= post.created_at %></span>
         </div>
         <div>
           <% if logged_in? %>
-          <div class="text-right"><%= render "favorites/favorites_button", post: post %></div>
           <% end %>
-          <p><%= post.content %></p>
-          <%= image_tag(post.image_url, alt: "User Icon.", class: "img-responsive") if post.image.present? %>
+          <p class="px-2"><%= post.content %></p>
+          <%= image_tag(post.image_url, alt: "User Icon.", class: "img-responsive rounded mx-auto d-block") if post.image.present? %>
         </div>
 
-        <div class="text-right">
-          <%= link_to post_path(post), class:"btn btn-default btn-sm" do %>
-            <i class="far fa-comment-dots"></i>　詳細 (Comment)
-          <% end %>
-        </div>
+
+        
+        
+        <table><tr>
+          <td style="vertical-align:middle;">
+            <%= link_to post_path(post), class:"btn btn-default" do %>
+              <i class="far fa-comment-dots mr-2"></i>詳細 (Comment)
+            <% end %></td>
+            <% if logged_in? %>
+          <td style="vertical-align:middle;" class="heart"><%= render "favorites/favorites_button", post: post %></td>
+            <% end %>
+        </tr></table>
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </div>
     </li>
   <% end %>

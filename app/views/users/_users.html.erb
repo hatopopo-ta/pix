@@ -1,18 +1,25 @@
 <% if users.any? %>
-  <ul class="list-unstyled">
+
     <% users.each do |user| %>
-      <li class="media">
-        <%= image_tag user.image.url, :size => '50x50' , alt: "User Icon." %>
-        <div class="media-body">
-          <div class="ml-2">
-            <%= user.name %>
-          </div>
-          <div class="ml-2">
-            <p><%= link_to 'プロフィール', user_path(user) %></p>
-          </div>
+    
+    <div class="user-card my-1">
+    
+      <div class="user-icon">
+        <%= image_tag user.image.url, :size => '50x50' , alt: "User Icon.", class: "rounded-circle" %>
+      </div>
+      <div class="user-main">
+        <div class="user-content">
+         <p><b><%= link_to user.name, user_path(user) %></b></p>
         </div>
-      </li>
-    <% end %>
-  </ul>
+        
+        <div class="user-content">
+          <p class="text-overflow" style="word-break: break-all;"><%= user.prof %></p>
+        </div>
+      </div>
+      </div>
+      <% end %>
+      
+    
+
   <%= paginate users %>
 <% end %>

@@ -7,64 +7,85 @@
       </div>
 
       <ul class="list-unstyled">
-  
         <li class="media mb-3 pt-2">
-          <%= image_tag @post.user.image.url, :size => '50x50', alt: "User Icon." %>
-      
-          <div class="media-body">
-            <div>
-              <%= link_to @post.user.name, user_path(@post.user) %> <span class="text-muted">posted at <%= @post.created_at %></span>
+          <div class="post-data yokonarabi">
+            <%= image_tag @post.user.image.url, :size => '50x50', alt: "User Icon.", class: "rounded-circle mr-2" %>
+            <B><%= link_to @post.user.name, user_path(@post.user) %></B> <span class="text-muted">posted at <%= @post.created_at %></span>
+          </div>
+          </li>
+          <li>
+            <div class="post">
+              <p class="px-5" style="word-break: break-all;"><%= @post.content %></p>
+              <%= image_tag(@post.image_url, alt: "image", class: "img-responsive rounded mx-auto d-block") if @post.image.present? %>
             </div>
+          </li>
+          <li>
+            <div class="btn-toolbar yokonarabi mt-2 mr-3 float-right">
+              <% if logged_in? %>
+                <div class="btn-group heart2"><%= render "favorites/favorites_button", post: @post %></div>
+              <% end %> 
+              <% if current_user == @post.user %>
+                
+                  <button id="btnGroupDrop1" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-angle-double-down"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <%= link_to '編集', edit_post_path(@post), class: 'dropdown-item' %>
+                    <%= link_to "削除", @post, method: :delete, data: { confirm: "投稿を削除しますか？" }, class: 'dropdown-item' %>
+                  </div>
+                
+              <% end %>
+            </div>
+          </li>
+          
+          <li class="comment">
             <div>
               <% if logged_in? %>
-                <div class="text-right"><%= render "favorites/favorites_button", post: @post %></div>
-              <% end %>
-                <p style="word-break: break-all;"><%= @post.content %></p>
-                <%= image_tag(@post.image_url, alt: "User Icon.", class: "img-responsive") if @post.image.present? %>
-              </div>
-                
-              <div class="text-right">
-                <% if current_user == @post.user %>
-                  <%= link_to '編集', edit_post_path(@post), class: 'btn btn-light btn-sm' %>
-                  <%= link_to "削除", @post, method: :delete, data: { confirm: "投稿を削除しますか？" }, class: 'btn btn-info btn-sm' %>
-                <% end %>
-              </div>
-              <% if logged_in? %>
-                <div class="jumbotron bg-light mx-auto comment-width">
+                <div class="card border-light comment-form">
                   <%= form_with(model:[@post, @comment], local: true) do |f| %>
                     <div class="form-group">
                       <%= render 'layouts/error_messages', model: f.object %>
-                      <%= f.label :content, "コメント"  %>
+                      <b><%= f.label :content, "コメントを投稿"  %></b>
                       <% f.hidden_field :post_id, value: @post.id %>
                       <%= f.text_area :content, class: "form-control" %>
                     </div>
-                    <%= f.submit '送信', class: "btn btn-info btn-block" %>
+                    <%= f.submit '送信', class: "btn rounded-pill float-right btn-outline-info" %>
                   <% end %>
                 </div>
               <% end %>
+            </div>
+          </li>
+
+          <li>
+            
+            
               
-              <hr style="width: 80%;">
               
-              <div class="text-center"><strong>コメント一覧</strong></div>
-              
-              <div class="comment">
-                <% @comments.each do |comment| %>
-                  <div class="py-3">
-                    <p><%= image_tag comment.user.image.url, :size => '50x50', alt: "User Icon." %><%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">commented at <%= comment.created_at %></p>
-                    <p style="word-break: break-all;"><%= comment.content %></p>
-                    
+                <div class="my-5">
+                  
+                  <% @comments.each do |comment| %>
+                    <hr class="style1">
+                    <div class="py-1 px-3 yokonarabi">
+                      <%= image_tag comment.user.image.url, :size => '50x50', alt: "User Icon.", class: "rounded-circle mr-2" %><B><%= link_to comment.user.name, user_path(comment.user) %></B> <span class="text-muted">commented at <%= comment.created_at %>
+                    </div>
                     <% if current_user == comment.user %>
-                    <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+                      <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class:"btn btn-default float-right mx-5 my-1" do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <% end %>
                     <% end %>
-                    <hr width="80%" align="center">
-                  </div>
-                <% end %>
+                    <p class="px-5 pb-3", style="word-break: break-all;"><%= comment.content %></p>
+                  <% end %>
               </div>
               
-              
-              
-          </div>
-        </li>
+              <% if @comments.empty? %>
+                <div class="card text-center empty-card border border-light mt-5">
+                  <p class="p1">まだコメントはありません。</p>
+                </div>
+              <% end %>
+          </li>
+          
+          
+          
+        
       </ul>
    
 
@@ -78,8 +99,9 @@
       </div>
     </aside>
     
+    
+    </div>
     <div class="push"></div>
     <div>
       <%= render "layouts/footer" %>
     </div>
-</div>

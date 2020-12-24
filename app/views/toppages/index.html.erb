@@ -3,7 +3,14 @@
         <div class="col-sm-8 card p-3">
           <%= render 'layouts/smartphone_menu' %>
           <div class="box">
-            <%= render 'posts/posts', posts: @posts %>
+            <% if  @posts.present? %>
+              <%= render 'posts/posts', posts: @posts %>
+            <% else %>
+              <div class="card text-center empty-card border border-light">
+                <p class="p1">まだ投稿はありません。</p>
+                <p><B>新規投稿</B>からPixにあなたのお気に入りの写真をシェアできます。</p>
+              </div>
+            <% end %>
           </div>
         </div>
         

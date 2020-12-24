@@ -7,7 +7,7 @@
     
     <div>
       <div>
-        <p><%= image_tag @user.image.url, :size => '180x180', class: 'd-block mx-auto', alt: "User Icon." %></p>
+        <p><%= image_tag @user.image.url, :size => '180x180', class: 'd-block mx-auto rounded-circle', alt: "User Icon." %></p>
         <div class="text-right">
           <% if current_user == @user %>
             <%= link_to edit_user_path(@user), class:"btn btn-default" do %>
@@ -21,8 +21,8 @@
           <% end %>
           
         </div>
-        <p class="pl-3"><strong><%= @user.name %></strong></p>
-        <p class="pl-3 py-1"><%= @user.prof %></p>
+        <p class="px-3"><strong><%= @user.name %></strong></p>
+        <p class="px-3 py-1"><%= @user.prof %></p>
       </div>
     </div>
 
@@ -35,7 +35,8 @@
         <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
       </ul>
       <% end %>
-      <%= render 'posts/posts', posts: @posts %>
+        <%= render 'posts/posts', posts: @posts %>
+
     </div>
     
     

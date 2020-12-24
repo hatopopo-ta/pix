@@ -23,13 +23,107 @@ p.break {
   word-wrap: break-word; /* 単語の途中でも改行 */
 }
 
+.empty-card {
+  color: gray;
+  font-size:12px;
+  padding: 10px;
+  background-image: url("card-back.jpg");
+}
+
+.empty-card p.p1 {
+  padding-top: 12px;
+}
+
+.yokonarabi {
+ display:flex;
+ justify-content:center; /* 水平方向 */
+ align-items: center; /* 垂直方向 */
+ display:inline-block;
+ vertical-align:top; /*縦方向の揃え位置を指定*/
+}
+
+.inline {
+ float: right;
+ justify-content:center; /* 水平方向 */
+ align-items: center; /* 垂直方向 */
+ display:inline-block;
+ vertical-align:top; /*縦方向の揃え位置を指定*/
+}
+
+.comment {
+  padding-top: 80px;
+}
+
+.comment-form {
+  padding: 30px;
+  background-color: #fafdff;
+  color: gray;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.user-card {
+  display:flex;
+  margin: 10px, 0px;
+  padding: 10px;
+  border :1px solid #d4d9df;
+  border-radius: 5px;
+}
+
+.user-main{
+	display:block;
+	line-height:0;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+
+
+.user-content{
+  margin:0;
+　padding:0;
+　line-height:0;
+}
+
+.text-overflow{
+  overflow: hidden;
+	border: none;
+	width: 350px;
+	background: #fff;
+	line-height: 1.0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis; /* Safari */
+	-o-text-overflow: ellipsis; /* Opera */
+}
+
+hr.style1 {
+  border-top: 1px dotted #8c8b8b;
+  width: 80%;
+}
+
 /* ボタン色付け */
 .fa-heart {
   color: #f19ca7;
 }
 
+.heart {
+  position: relative;
+  bottom: 4px;
+  left: 25px;
+}
+
+.heart2 {
+  bottom: 4px;
+}
+
+
 .fa-comment-dots {
   color: gray;
+  display: inline-block;
+  transform: scaleX(-1);
 }
 
 .fa-pen-fancy {
@@ -40,6 +134,8 @@ p.break {
   position: fixed;
   width: 20%;
 }
+
+
 
 @media (min-width: 576px) {
   /* ウインドウ幅500px以上の時に適用されるスタイル */
