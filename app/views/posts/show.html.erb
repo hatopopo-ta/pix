@@ -67,12 +67,17 @@
                     <div class="py-1 px-3 yokonarabi">
                       <%= image_tag comment.user.image.url, :size => '50x50', alt: "User Icon.", class: "rounded-circle mr-2" %><B><%= link_to comment.user.name, user_path(comment.user) %></B> <span class="text-muted">commented at <%= comment.created_at %>
                     </div>
-                    <% if current_user == comment.user %>
-                      <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class:"btn btn-default float-right mx-5 my-1" do %>
-                        <i class="fas fa-trash-alt"></i>
-                      <% end %>
-                    <% end %>
+                    
                     <p class="px-5 pb-3", style="word-break: break-all;"><%= comment.content %></p>
+                    
+                      <% if current_user == comment.user %>
+                      <div class="text-right pr-5">
+                      <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "コメントを削除しますか？" }, class:"btn btn-light text-right btn-sm" do %>
+                        <i class="fas fa-trash-alt"></i> コメントを削除
+                      <% end %>
+                      </div>
+                    <% end %>
+                    
                   <% end %>
               </div>
               
